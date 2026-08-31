@@ -251,6 +251,8 @@
   .dress-package:first-child{border-top:1px solid var(--ink);}
   .dress-package:last-child{border-bottom:1px solid var(--line);}
   .dress-package-info{display:flex;flex-direction:column;align-items:center;}
+  .fitsnap-info{align-items:flex-end;}
+  .fitsnap-inner{display:inline-block;text-align:left;}
   .dress-package-info h3{
     font-size:19px;font-weight:700;color:var(--burgundy);margin-bottom:14px;
     position:relative;padding-left:16px;display:inline-block;
@@ -322,6 +324,9 @@
     .program-tier-head{flex-direction:column;align-items:flex-start;gap:6px;}
     .process-row{grid-template-columns:40px 1fr;}
     .dress-package{grid-template-columns:1fr;gap:18px;}
+    .fitsnap-info{align-items:center;}
+    .fitsnap-inner{text-align:center;}
+    .fitsnap-list{text-align:center;}
     .fitsnap-gallery{grid-template-columns:repeat(3,1fr);}
     .about-gallery{grid-template-columns:repeat(2,1fr);}
     .footer-nav{gap:16px;}
@@ -331,6 +336,8 @@
     .nav-inner{padding:18px 20px;}
     .wrap{padding:0 20px;}
     nav > ul{gap:12px;}
+    .footer-sep{display:none;}
+    .footer-line2{display:block;margin-top:4px;}
   }
 </style>
 </head>
@@ -468,8 +475,8 @@
     </div>
     <div class="wrap">
       <div class="reveal" style="max-width:560px;margin:0 auto;font-family:'Pretendard Variable','Pretendard',sans-serif;font-size:13.5px;line-height:1.95;color:var(--ink);font-weight:400;">
-        <p style="margin-bottom:38px;">루메르브라이덜은 커스텀웨딩 디렉팅 및 플라워 연출을<br>오랫동안 해온 경험을 드레스에 그대로 담아 만든 브랜드입니다.</p>
-        <p style="margin-bottom:38px;">수많은 웨딩 현장에서 눈여겨봐온 신부의 실루엣,<br>조명 아래에서 가장 아름답게 빛나는 원단의 결,<br>하객들의 시선이 머무는 각도까지.<br>모든 디테일이 루메르브라이덜의 드레스 안에 녹아 있습니다.</p>
+        <p style="margin-bottom:38px;">루메르 브라이덜은 커스텀웨딩 디렉팅 및 플라워 연출을<br>오랫동안 해온 경험을 드레스에 그대로 담아 만든 브랜드입니다.</p>
+        <p style="margin-bottom:38px;">수많은 웨딩 현장에서 눈여겨봐온 신부의 실루엣,<br>조명 아래에서 가장 아름답게 빛나는 원단의 결,<br>하객들의 시선이 머무는 각도까지.<br>모든 디테일이 루메르 브라이덜의 드레스 안에 녹아 있습니다.</p>
         <p>드레스를 고르는 순간부터, 감각 있는 웨딩디렉터가 함께합니다.<br>단순히 예쁜 드레스를 권하는 것이 아니라,<br>공간감과 조명, 그날의 컨셉까지 고려해<br>신부에게 가장 어울리는 한 벌을 함께 찾아갑니다.</p>
       </div>
 
@@ -492,10 +499,10 @@
       <div class="dress-packages reveal">
 
         <div class="dress-package">
-          <div class="dress-package-info" style="align-items:flex-end;">
-            <div style="display:inline-block;text-align:left;">
-            <h3>루메르브라이덜 가봉스냅</h3>
-            <ul class="program-list" style="text-align:left;">
+          <div class="dress-package-info fitsnap-info">
+            <div class="fitsnap-inner">
+            <h3>루메르 브라이덜 가봉스냅</h3>
+            <ul class="program-list fitsnap-list">
               <li>작가 1인 4시간 촬영 (로시끌레르 or 블리스데이 중 선택)</li>
               <li>드레스 3벌 + 헬퍼 (루메르 브라이덜)</li>
               <li>정장 2벌 세트 대여 (지음테일러 청주점)</li>
@@ -503,7 +510,6 @@
               <li>촬영 헤어변형 3시간 (소유 메이크업)</li>
               <li>촬영 메인부케 1개 (엘렌디레브)</li>
               <li>전체 완본 파일 + 수정본 20장</li>
-              <li>아크릴 20R 액자 (50cm x 76cm) 1개</li>
               <li>20PAGE 앨범 1권</li>
             </ul>
             </div>
@@ -596,7 +602,7 @@
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;"><path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.76 1.85 5.19 4.63 6.58-.2.75-.73 2.73-.84 3.15-.13.52.19.51.4.37.16-.11 2.6-1.76 3.65-2.48.68.1 1.38.15 2.16.15 5.52 0 10-3.48 10-7.77C22 6.48 17.52 3 12 3z" fill="#FFFFFF"/></svg>
       </a>
       <p style="font-size:14px;color:var(--stone);margin-bottom:64px;">
-        카카오톡 <a href="http://pf.kakao.com/_qVkGX" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--ink);">'루메르브라이덜'</a>
+        카카오톡 <a href="http://pf.kakao.com/_qVkGX" target="_blank" rel="noopener" style="text-decoration:underline;color:var(--ink);">'루메르 브라이덜'</a>
       </p>
 
       <p style="font-size:11.5px;color:var(--stone);letter-spacing:0.04em;margin-bottom:24px;">
@@ -622,7 +628,7 @@
 
 <footer>
   <div class="wrap footer-reg">
-    TEL: 070-4278-1324 &nbsp;|&nbsp; INSTA: <a href="https://www.instagram.com/lumer_bridal" target="_blank" rel="noopener">@lumer_bridal</a> &nbsp;|&nbsp; ADDRESS: 충청북도 청주시 서원구 미평동 22-7 2층
+    <span class="footer-line1">TEL: 070-4278-1324 &nbsp;|&nbsp; INSTA: <a href="https://www.instagram.com/lumer_bridal" target="_blank" rel="noopener">@lumer_bridal</a></span><span class="footer-sep">&nbsp;|&nbsp;</span><span class="footer-line2">ADDRESS: 충청북도 청주시 서원구 미평동 22-7 2층</span>
   </div>
 </footer>
 
