@@ -689,13 +689,14 @@
 
   // Lightbox for fitsnap gallery photos
   (function(){
-    const photos = Array.from(document.querySelectorAll('.fitsnap-photo img'));
-    if (!photos.length) return;
+    const galleries = Array.from(document.querySelectorAll('.about-gallery, .fitsnap-gallery'));
+    if (!galleries.length) return;
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const closeBtn = document.getElementById('lightboxClose');
     const prevBtn = document.getElementById('lightboxPrev');
     const nextBtn = document.getElementById('lightboxNext');
+    let photos = [];
     let currentIndex = 0;
 
     function openAt(index){
@@ -709,8 +710,14 @@
       document.body.style.overflow = '';
     }
 
-    photos.forEach((img, i) => {
-      img.closest('.fitsnap-photo').addEventListener('click', () => openAt(i));
+    galleries.forEach(gallery => {
+      const galleryPhotos = Array.from(gallery.querySelectorAll('.fitsnap-photo img'));
+      galleryPhotos.forEach((img, i) => {
+        img.closest('.fitsnap-photo').addEventListener('click', () => {
+          photos = galleryPhotos;
+          openAt(i);
+        });
+      });
     });
     closeBtn.addEventListener('click', closeLightbox);
     prevBtn.addEventListener('click', () => openAt(currentIndex - 1));
