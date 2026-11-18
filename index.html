@@ -260,6 +260,25 @@
     border-top:1px solid var(--line);
     text-align:center;
   }
+  .price-compare{border-top:1px solid var(--ink);border-bottom:1px solid var(--line);}
+  .pc-head,.pc-row{display:grid;grid-template-columns:1fr 1fr;}
+  .pc-head{border-bottom:1px solid var(--line);}
+  .pc-row{border-bottom:1px solid var(--line);}
+  .pc-row:last-child{border-bottom:none;}
+  .pc-cell{padding:22px 16px;text-align:center;}
+  .pc-head .pc-cell{font-size:15px;font-weight:700;color:var(--ink);padding:26px 16px;}
+  .pc-head .pc-cell span{font-size:12px;font-weight:500;color:var(--stone);}
+  .pc-sale{background:var(--paper);}
+  .pc-name{display:block;font-size:13px;color:var(--stone);margin-bottom:6px;}
+  .pc-price{display:block;font-size:17px;font-weight:700;color:var(--ink);}
+  .pc-orig{font-weight:500;color:var(--stone);text-decoration:line-through;}
+  @media (max-width:600px){
+    .pc-cell{padding:18px 8px;}
+    .pc-name{font-size:11.5px;}
+    .pc-price{font-size:15px;}
+    .pc-head .pc-cell{font-size:14px;}
+    .pc-head .pc-cell span{display:block;}
+  }
   .dress-info-notes{max-width:900px;margin:36px auto 0;text-align:center;font-size:13px;color:var(--stone);line-height:2;}
   .dress-info-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:10px;}
   .dress-info-notes ul{margin-bottom:12px;}
@@ -414,56 +433,27 @@
       <h1 style="font-size:clamp(22px,2.6vw,28px);font-weight:400;line-height:1.7;">DRESS PRICE</h1>
     </div>
     <div class="wrap">
-      <div class="dress-packages reveal">
-
-        <div class="dress-package">
-          <div class="dress-package-info">
-            <h3>본식드레스 (1벌)</h3>
-          </div>
-          <div class="dress-package-price">
-            <div class="price-row">
-              <span class="price-tier">지정가 (20% 할인)</span>
-              <span class="price-value"><s>350만원</s> <span class="arrow">›</span> <strong>280만원</strong></span>
-            </div>
-          </div>
+      <div class="dress-packages price-compare reveal">
+        <div class="pc-head">
+          <div class="pc-cell">정상가</div>
+          <div class="pc-cell pc-sale">지정가 <span>/ 20% 할인</span></div>
         </div>
-
-        <div class="dress-package">
-          <div class="dress-package-info">
-            <h3>촬영드레스 (4벌)</h3>
-          </div>
-          <div class="dress-package-price">
-            <div class="price-row">
-              <span class="price-tier">지정가 (20% 할인)</span>
-              <span class="price-value"><s>180만원</s> <span class="arrow">›</span> <strong>144만원</strong></span>
-            </div>
-          </div>
+        <div class="pc-row">
+          <div class="pc-cell"><span class="pc-name">본식드레스 (1벌)</span><span class="pc-price pc-orig">350만원</span></div>
+          <div class="pc-cell pc-sale"><span class="pc-name">본식드레스 (1벌)</span><span class="pc-price">280만원</span></div>
         </div>
-
-        <div class="dress-package">
-          <div class="dress-package-info">
-            <h3>본식 (1벌) + 촬영 (4벌)</h3>
-          </div>
-          <div class="dress-package-price">
-            <div class="price-row">
-              <span class="price-tier">지정가 (20% 할인)</span>
-              <span class="price-value"><s>430만원</s> <span class="arrow">›</span> <strong>344만원</strong></span>
-            </div>
-          </div>
+        <div class="pc-row">
+          <div class="pc-cell"><span class="pc-name">촬영드레스 (4벌)</span><span class="pc-price pc-orig">180만원</span></div>
+          <div class="pc-cell pc-sale"><span class="pc-name">촬영드레스 (4벌)</span><span class="pc-price">144만원</span></div>
         </div>
-
-        <div class="dress-package">
-          <div class="dress-package-info">
-            <h3>본식 (1벌) + 본식메이크업</h3>
-          </div>
-          <div class="dress-package-price">
-            <div class="price-row">
-              <span class="price-tier">지정가 (20% 할인)</span>
-              <span class="price-value"><s>400만원</s> <span class="arrow">›</span> <strong>320만원</strong></span>
-            </div>
-          </div>
+        <div class="pc-row">
+          <div class="pc-cell"><span class="pc-name">본식 (1벌) + 촬영 (4벌)</span><span class="pc-price pc-orig">430만원</span></div>
+          <div class="pc-cell pc-sale"><span class="pc-name">본식 (1벌) + 촬영 (4벌)</span><span class="pc-price">344만원</span></div>
         </div>
-
+        <div class="pc-row">
+          <div class="pc-cell"><span class="pc-name">본식 (1벌) + 본식메이크업</span><span class="pc-price pc-orig">400만원</span></div>
+          <div class="pc-cell pc-sale"><span class="pc-name">본식 (1벌) + 본식메이크업</span><span class="pc-price">320만원</span></div>
+        </div>
       </div>
 
       <div class="dress-info-notes reveal">
