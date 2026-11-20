@@ -389,14 +389,14 @@
     .footer-line2{display:block;margin-top:4px;}
     body.is-home{
       --A:clamp(220px,calc(300px + (100svh - 584px) / 2),460px);
-      --hs:max(0px,calc((100svh - 132px - var(--A) - 152px) / 2 - 4px));
+      --hs:max(0px,calc((100svh - 132px - var(--A) - 152px) / 2 - 52px));
       padding-top:var(--hs);
     }
     body.is-home .nav-inner{padding-top:calc(64px + var(--hs));padding-bottom:12px;}
     body.is-home .hero{box-sizing:border-box;height:calc(132px + var(--A));padding:132px 0 52px;}
     body.is-home .hero-canvas img{margin-top:0;width:min(80vw,580px);max-height:100%;}
     body.is-home .floating-icons{
-      right:auto;left:50%;transform:translateX(-50%);
+      right:20px;left:auto;transform:none;
       bottom:calc(100svh - var(--hs) - 132px - var(--A) + 8px);
     }
     body.is-home .floating-icons a{width:40px;height:40px;}
