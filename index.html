@@ -333,6 +333,28 @@
     max-width:560px;margin:80px auto 0;background:var(--line);
   }
 
+  /* ---------- PROMO POPUP ---------- */
+  .promo{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,20,20,0.58);opacity:0;transition:opacity .45s ease;}
+  .promo.is-open{display:flex;}
+  .promo.is-show{opacity:1;}
+  .promo-card{position:relative;width:100%;max-width:340px;background:var(--white);padding:10px;box-shadow:0 30px 80px rgba(0,0,0,0.28);transform:translateY(16px);transition:transform .55s ease;}
+  .promo.is-show .promo-card{transform:translateY(0);}
+  .promo-inner{border:1px solid var(--accent);padding:44px 26px 28px;text-align:center;}
+  .promo-eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:0.12em;color:var(--accent);}
+  .promo-line{width:28px;height:1px;background:var(--accent);margin:18px auto 22px;}
+  .promo-title{font-family:'Noto Serif KR',serif;font-weight:500;font-size:29px;line-height:1.45;letter-spacing:-0.01em;color:var(--ink);}
+  .promo-sub{margin-top:18px;font-size:12.5px;line-height:1.7;color:#4a4a4a;}
+  .promo-perks{margin:22px 0 26px;padding:14px 8px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;font-size:12.5px;font-weight:600;letter-spacing:0.02em;color:var(--ink);line-height:1.5;}
+  .promo-cta{display:block;background:var(--ink);color:#fff;padding:15px 0;font-size:12px;letter-spacing:0.16em;transition:background .2s ease;}
+  .promo-cta:hover{background:#333;}
+  .promo-foot{display:flex;justify-content:space-between;margin-top:16px;font-size:11px;color:var(--stone);}
+  .promo-foot button{font-size:11px;color:var(--stone);padding:4px 2px;}
+  .promo-foot button:hover{color:var(--ink);}
+  @media (max-width:600px){
+    .promo-inner{padding:38px 20px 24px;}
+    .promo-title{font-size:26px;}
+  }
+
   /* ---------- LIGHTBOX ---------- */
   .lightbox{
     position:fixed;inset:0;z-index:300;
@@ -653,6 +675,23 @@
   <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="다음 사진">&#8250;</button>
 </div>
 
+<div class="promo" id="promoPopup" role="dialog" aria-modal="true" aria-label="지정 계약 단독 혜택">
+  <div class="promo-card">
+    <div class="promo-inner">
+      <div class="promo-eyebrow">Lumer Bridal</div>
+      <div class="promo-line"></div>
+      <div class="promo-title">지정 계약<br>단독 혜택</div>
+      <p class="promo-sub">타 샵 투어 없이 방문 전<br>사전 계약 시 제공되는 혜택입니다.</p>
+      <div class="promo-perks"><span>20% 금액 할인</span><span>본식 부케</span><span>애프터드레스</span><span>이미지투어</span></div>
+      <a class="promo-cta" id="promoGo" href="#dress">DRESS PRICE 보러가기 &nbsp;→</a>
+      <div class="promo-foot">
+        <button type="button" id="promoToday">오늘 하루 보지 않기</button>
+        <button type="button" id="promoClose">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap footer-reg">
     <span class="footer-line1">TEL: 070-4278-1324 &nbsp;|&nbsp; INSTA: <a href="https://www.instagram.com/lumer_bridal" target="_blank" rel="noopener">@lumer_bridal</a></span><span class="footer-sep">&nbsp;|&nbsp;</span><span class="footer-line2">ADDRESS: 충청북도 청주시 서원구 미평동 22-7 2층</span>
@@ -756,6 +795,34 @@
       if (e.key === 'ArrowLeft') openAt(currentIndex - 1);
       if (e.key === 'ArrowRight') openAt(currentIndex + 1);
     });
+  })();
+
+  // Promo popup (home only, once per day unless dismissed)
+  (function(){
+    const pop = document.getElementById('promoPopup');
+    if (!pop) return;
+    const KEY = 'lumerPromoHideUntil';
+    function hidden(){ try { return Number(localStorage.getItem(KEY) || 0) > Date.now(); } catch(e){ return false; } }
+    function open(){
+      pop.classList.add('is-open');
+      requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add('is-show')));
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      pop.classList.remove('is-show');
+      setTimeout(() => pop.classList.remove('is-open'), 450);
+      document.body.style.overflow = '';
+    }
+    document.getElementById('promoClose').addEventListener('click', close);
+    document.getElementById('promoToday').addEventListener('click', () => {
+      try { localStorage.setItem(KEY, String(Date.now() + 24*60*60*1000)); } catch(e){}
+      close();
+    });
+    document.getElementById('promoGo').addEventListener('click', close);
+    pop.addEventListener('click', e => { if (e.target === pop) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && pop.classList.contains('is-open')) close(); });
+    const isHome = !Object.prototype.hasOwnProperty.call(PAGE_SECTIONS, window.location.hash);
+    if (isHome && !hidden()) setTimeout(open, 600);
   })();
 </script>
 </body>
