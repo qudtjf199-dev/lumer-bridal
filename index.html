@@ -334,10 +334,10 @@
   }
 
   /* ---------- PROMO POPUP ---------- */
-  .promo{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,20,20,0.5);opacity:0;transition:opacity .45s ease;}
+  .promo{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,20,20,0.5);opacity:0;transition:opacity .3s ease;}
   .promo.is-open{display:flex;}
   .promo.is-show{opacity:1;}
-  .promo-card{position:relative;width:100%;max-width:290px;background:var(--white);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.3);transform:translateY(16px);transition:transform .55s ease;}
+  .promo-card{position:relative;width:100%;max-width:290px;background:var(--white);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.3);transform:translateY(12px);transition:transform .4s ease;}
   .promo.is-show .promo-card{transform:translateY(0);}
   .promo-visual{position:relative;display:block;aspect-ratio:4/5;background:#c9c9c7;overflow:hidden;}
   .promo-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block;}
@@ -800,22 +800,26 @@
     });
   })();
 
-  // Promo popup (home only, once per day unless dismissed)
+  // Promo popup: shows right away on home, and again whenever the visitor returns to home,
+  // until "오늘 하루 보지 않기" is pressed.
   (function(){
     const pop = document.getElementById('promoPopup');
     if (!pop) return;
     const KEY = 'lumerPromoHideUntil';
     function hidden(){ try { return Number(localStorage.getItem(KEY) || 0) > Date.now(); } catch(e){ return false; } }
+    function onHome(){ return !Object.prototype.hasOwnProperty.call(PAGE_SECTIONS, window.location.hash); }
     function open(){
+      if (pop.classList.contains('is-open')) return;
       pop.classList.add('is-open');
-      requestAnimationFrame(() => requestAnimationFrame(() => pop.classList.add('is-show')));
+      requestAnimationFrame(() => pop.classList.add('is-show'));
       document.body.style.overflow = 'hidden';
     }
     function close(){
       pop.classList.remove('is-show');
-      setTimeout(() => pop.classList.remove('is-open'), 450);
+      setTimeout(() => { if (!pop.classList.contains('is-show')) pop.classList.remove('is-open'); }, 350);
       document.body.style.overflow = '';
     }
+    function showIfHome(){ if (onHome() && !hidden()) open(); else if (!onHome()) close(); }
     document.getElementById('promoClose').addEventListener('click', close);
     document.getElementById('promoToday').addEventListener('click', () => {
       try { localStorage.setItem(KEY, String(Date.now() + 24*60*60*1000)); } catch(e){}
@@ -824,8 +828,10 @@
     document.querySelectorAll('.promo-go').forEach(a => a.addEventListener('click', close));
     pop.addEventListener('click', e => { if (e.target === pop) close(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && pop.classList.contains('is-open')) close(); });
-    const isHome = !Object.prototype.hasOwnProperty.call(PAGE_SECTIONS, window.location.hash);
-    if (isHome && !hidden()) setTimeout(open, 600);
+    window.addEventListener('hashchange', showIfHome);
+    window.addEventListener('pageshow', showIfHome);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') showIfHome(); });
+    showIfHome();
   })();
 </script>
 </body>
